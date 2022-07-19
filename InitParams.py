@@ -20,6 +20,16 @@ def InitParams(atlasPath="",destinationPath=""):
     Params['path2'] = Params['path0'] + 'results' + Params['slash']
     Params['atlasPath'] = Params['path1'] if atlasPath=="" else atlasPath
     Params['destinationPath'] = Params['path2'] if destinationPath=="" else destinationPath
+    
+    
+    
+    #Default grid computation settings:
+    Params['disableGrid'] = True
+    
+    
+    
+    
+    
     return Params
 
 if __name__ =='__main__':

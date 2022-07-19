@@ -24,9 +24,15 @@ def InitScriptsFolder(Params):
             for g in get_files:
                 shutil.move(scriptspath + g, file_destination)
     
+    temp_path = Params['destinationPath'] + 'temp'+Params['slash']
+    if not os.path.exists(temp_path):
+        os.makedirs(temp_path)
+    else:
+        shutil.rmtree(temp_path)
+        os.makedirs(temp_path)
     
     log_path = scriptspath
-    return log_path
+    return log_path,temp_path
 
 if __name__ == '__main__':
     Params = InitParams()
