@@ -19,7 +19,7 @@ def RunAnalysis(Params):
     getPCInfo()
     #Stage 2
     #skip
-    #Stage 3
+    #Stage 3 Calculate intersubject synchronization maps
     
     
     
