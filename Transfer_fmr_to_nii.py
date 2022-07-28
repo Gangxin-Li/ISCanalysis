@@ -13,7 +13,7 @@ import numpy as np
 import nibabel as nb
 import fmr
 
-FILE = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/movie_8/sub005_M/sub-sid000005_task-movie_run-01_bold_SCCAI_3DMCTS_THPGLMF3c.fmr"
+#FILE = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/movie_8/sub005_M/sub-sid000005_task-movie_run-01_bold_SCCAI_3DMCTS_THPGLMF3c.fmr"
 
 # # =============================================================================
 # # Load fmr
