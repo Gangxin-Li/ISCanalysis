@@ -328,7 +328,7 @@ def isc_fmri_roi(fmri_data, mask_data):
 
 if __name__ == "__main__":
     
-    subisc = isc("/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/movie_8/sub005_M/sub-sid000005_task-movie_run-01_bold_bvbabel")
+    subisc = isc_fmri("/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/movie_8/sub005_M/sub-sid000005_task-movie_run-01_bold_bvbabel")
     
     print("complete")
 
