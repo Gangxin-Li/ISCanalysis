@@ -39,7 +39,7 @@ def vmr_to_nii(path = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/
                 header, data = vmr.read_vmr(FILE)
                 # Save nifti for testing
                 basename = FILE.split(os.extsep, 1)[0]
-                outname = "{}_bvbabel.nii.gz".format(basename)
+                outname = "{}.nii.gz".format(basename)
                 # Export nifti (assign an identity matrix as affine with default header)
                 img = nb.Nifti1Image(data, affine=np.eye(4))
                 nb.save(img, outname)

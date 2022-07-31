@@ -33,23 +33,12 @@ warnings.filterwarnings('ignore')
 # nest_asyncio.apply()
 import datalad.api as dl
 
-data_dir = '/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/Sherlock'
-
-# If dataset hasn't been installed, clone from GIN repository
-if not os.path.exists(data_dir):
-    dl.clone(source='https://gin.g-node.org/ljchang/Sherlock', path=data_dir)
-
-# Initialize dataset
-ds = dl.Dataset(data_dir)
-
-# Get Cropped & Denoised CSV Files
-result = ds.get(glob.glob(os.path.join(data_dir, 'fmriprep', '*', 'func', f'*Average_ROI*csv')))
 
 
-# mask = Brain_Data('http://neurovault.org/media/images/2099/Neurosynth%20Parcellation_0.nii.gz')
-# mask_x = expand_mask(mask)
+mask = Brain_Data('http://neurovault.org/media/images/2099/Neurosynth%20Parcellation_0.nii.gz')
+mask_x = expand_mask(mask)
 
-# mask.plot()
+mask.plot()
 
 
 
