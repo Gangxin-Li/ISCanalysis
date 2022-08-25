@@ -39,15 +39,20 @@ def vtc_to_nii(path = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/
                 # Save nifti for testing
                 basename = FILE.split(os.extsep, 1)[0]
                 outname = "{}.nii.gz".format(basename)
+                    
                 # Export nifti (assign an identity matrix as affine with default header)
-                img = nb.Nifti1Image(data, affine=np.eye(4))
+                # np.eye(4)*n, n control the resoultion
+                n=header.get('Data type (1:short int, 2:float)')
+                print("resolution:"+str(n))
+                img = nb.Nifti1Image(data,affine=np.eye(4)*n)
+                # img = nb.Nifti1Image(data,affine=np.eye(4))
                 nb.save(img, outname)
                 print(os.path.join(root,file)+"\nComplete")
     print("Convert Complete!")
     return path
 
 if __name__ =="__main__":
-    vtc_to_nii()
+    vtc_to_nii('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/25Aug')
 
 
 

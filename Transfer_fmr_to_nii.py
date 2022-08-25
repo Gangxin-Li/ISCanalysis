@@ -59,7 +59,7 @@ def fmr_to_nii(path = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/
     return path
 
 if __name__ =="__main__":
-    fmr_to_nii()
+    fmr_to_nii('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/15Aug/vtc_tal/VTC_TALmask.msk')
 
 
 

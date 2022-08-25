@@ -23,6 +23,7 @@ def read_vtc(filename):
         Image data.
 
     """
+    print("staring vtc")
     header = dict()
     with open(filename, 'rb') as f:
         # Expected binary data: short int (2 bytes)
@@ -36,7 +37,7 @@ def read_vtc(filename):
         # Expected binary data: short int (2 bytes)
         data, = struct.unpack('<h', f.read(2))
         header["Protocol attached"] = data
-
+        
         if header["Protocol attached"] > 0:
             # Expected binary data: variable-length string
             data = read_variable_length_string(f)
@@ -49,11 +50,15 @@ def read_vtc(filename):
         header["Current protocol index"] = data
         data, = struct.unpack('<h', f.read(2))
         header["Data type (1:short int, 2:float)"] = data
+        #new add
+        header["datatype"] = data
+        header["get_data_dtype"] = data
+        #
         data, = struct.unpack('<h', f.read(2))
         header["Nr time points"] = data
         data, = struct.unpack('<h', f.read(2))
         header["VTC resolution relative to VMR (1, 2, or 3)"] = data
-
+        # print("here is the reslut :\n"+str(data))
         data, = struct.unpack('<h', f.read(2))
         header["XStart"] = data
         data, = struct.unpack('<h', f.read(2))
@@ -75,7 +80,7 @@ def read_vtc(filename):
 
         # Expected binary data: char (4 bytes)
         data, = struct.unpack('<f', f.read(4))
-        header["TR (ms)"] = data
+        header["TR (ms)"] = data/1000
 
         # ---------------------------------------------------------------------
         # Read VTC data
@@ -95,14 +100,22 @@ def read_vtc(filename):
         #   BV (Z left -> right) [axis 0 after np.reshape] = X in Tal space
 
         # Prepare dimensions of VTC data array
+ 
         VTC_resolution = header["VTC resolution relative to VMR (1, 2, or 3)"]
+
         DimX = (header["XEnd"] - header["XStart"]) // VTC_resolution
         DimY = (header["YEnd"] - header["YStart"]) // VTC_resolution
         DimZ = (header["ZEnd"] - header["ZStart"]) // VTC_resolution
         DimT = header["Nr time points"]
-
         data_img = np.zeros(DimZ * DimY * DimX * DimT)
-
+        # print('VTC_resolution:'+str(VTC_resolution))
+        # print('XStart:'+str(header["XStart"]))
+        # print('XEnd:'+str(header["XEnd"]))
+        # print('YStart:'+str(header["YStart"]))
+        # print('YEnd:'+str(header["YEnd"]))
+        # print('ZStart:'+str(header["ZStart"]))
+        # print('ZEnd:'+str(header["ZEnd"]))
+        # print('data_img shape:'+str(data_img.shape))
         if header["Data type (1:short int, 2:float)"] == 1:
             for i in range(data_img.size):
                 data_img[i], = struct.unpack('<h', f.read(2))
@@ -111,11 +124,12 @@ def read_vtc(filename):
                 data_img[i], = struct.unpack('<f', f.read(4))
         else:
             raise("Unrecognized VTC data_img type.")
-
+            
         data_img = np.reshape(data_img, (DimZ, DimY, DimX, DimT))
+        # data_img = np.reshape(data_img, (DimY, DimZ, DimX, DimT))
         data_img = np.transpose(data_img, (0, 2, 1, 3))  # BV to Tal
         data_img = data_img[::-1, ::-1, ::-1, :]  # Flip BV axes
-
+        # print(data_img)
     return header, data_img
 
 
@@ -248,3 +262,6 @@ def generate_vtc():
     data = data.astype(np.short)  # NOTE: float vtc does not seem to work in BV
 
     return header, data
+
+if __name__ == "__main__":
+    read_vtc('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/22Aug/sub-sid000005_task-movie_run-01_bold_SCCAI_3DMCTS_THPGLMF3c_256_trilin_2x0.9_MNI.vtc')

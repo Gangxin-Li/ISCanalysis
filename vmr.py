@@ -84,7 +84,8 @@ def read_vmr(filename):
 
         data_img = np.transpose(data_img, (0, 2, 1))  # BV to Tal
         data_img = data_img[::-1, ::-1, ::-1]  # Flip BV axes
-
+        print(data_img.shape)
+        print(data_img)
         # ---------------------------------------------------------------------
         # VMR Post-Data Header
         # ---------------------------------------------------------------------
@@ -402,3 +403,7 @@ def write_vmr(filename, header, data_img):
         f.write(struct.pack('<i', data))
 
     return print("VMR saved.")
+
+
+if __name__ == "__main__":
+    read_vmr('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/9Aug test/sub-sid000005_acq-MPRAGE_T1w_IIHC_MNI.vmr')

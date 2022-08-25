@@ -1,0 +1,9 @@
+#vtc_vmr
+python isc_cal.py --input /Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/vtc_vmr/sub-sid000278_acq-MPRAGE_T1w_IIHC_MNI_bvbabel.nii.gz /Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/vtc_vmr/sub-sid000278_task-movie_run-01_bold_SCCAI_3DMCTS_THPGLMF3c_256_trilin_2x0_bvbabel.nii.gz /Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/vtc_vmr/sub-sid000278_task-movie_run-05_bold_SCCAI_3DMCTS_THPGLMF3c_256_trilin_2x0_bvbabel.nii.gz --output isc.nii.gz --zscore
+
+#movie_8
+
+python isc_cal.py --input /Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/movie_8/sub005_M/sub-sid000005_task-movie_run-01_bold_SCCAI_3DMCTS_THPGLMF3c_bvbabel.nii /Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/movie_8/sub005_M/sub-sid000005_task-movie_run-01_bold_bvbabel.nii /Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/movie_8/sub005_M/sub-sid000005_task-movie_run-01_bold_firstvol_bvbabel.nii --output isc.nii.gz --zscore
+
+
+

@@ -34,12 +34,66 @@ warnings.filterwarnings('ignore')
 import datalad.api as dl
 
 
-
-mask = Brain_Data('http://neurovault.org/media/images/2099/Neurosynth%20Parcellation_0.nii.gz')
-mask_x = expand_mask(mask)
-
-mask.plot()
+import nibabel as nib
+# import skimage.io as io
+# import numpy as np
 
 
+# from glob import glob
+# import numpy as np
+# import nibabel as nib
+# from nilearn.plotting import (find_xyz_cut_coords,
+#                               plot_connectome,
+#                               plot_stat_map)
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+# from scipy.stats import pearsonr
+# from scipy.spatial.distance import squareform
+# from brainiak.isc import isc, isfc
+
+
+
+
+img=nib.load('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/25Aug/VTC_TALmask.nii'
+)
+header = img.header
+print(header["XStart"])
+
+
+# img_arr=img.get_fdata()
+# print(img_arr.shape)
+# img_arr=np.squeeze(img_arr)
+
+# mask = Brain_Data('http://neurovault.org/media/images/2099/Neurosynth%20Parcellation_0.nii.gz')
+# mask_x = expand_mask(mask)
+
+# mask.plot()
+
+# mask = Brain_Data('http://neurovault.org/media/images/2099/Neurosynth%20Parcellation_0.nii.gz')
+# mask_x = expand_mask(mask)
+
+# mask.plot()
+
+
+
+
+# data_dir = '/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/Sherlock'
+
+# # If dataset hasn't been installed, clone from GIN repository
+# if not os.path.exists(data_dir):
+#     dl.clone(source='https://gin.g-node.org/ljchang/Sherlock', path=data_dir)
+
+# # Initialize dataset
+# ds = dl.Dataset(data_dir)
+
+# # Get Cropped & Denoised CSV Files
+# result = ds.get(glob.glob(os.path.join(da/ta_dir, 'fmriprep', '*', 'func', f'*Average_ROI*csv')))
+
+
+
+# mask = Brain_Data('http://neurovault.org/media/images/2099/Neurosynth%20Parcellation_0.nii.gz')
+# mask_x = expand_mask(mask)
+
+# mask.plot()
 
 

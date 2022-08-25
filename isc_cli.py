@@ -1,11 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Aug  1 00:36:46 2022
-
-@author: gangxinli
-"""
-
 
 import sys
 import os
@@ -29,6 +22,48 @@ def parse_arguments(args):
         description=("Python-based command-line program for computing "
                      "leave-one-out intersubject correlations (ISCs)"),
         epilog=(textwrap.dedent("""
+    This program provides a simple Python-based command-line interface (CLI)
+    for running intersubject correlation (ISC) analysis. ISCs are computed
+    using the leave-one-out approach where each subject's time series (per
+    voxel) is correlated with the average of the remaining subjects' time
+    series. The --input should be two or more 4-dimensional NIfTI (.nii or
+    .nii.gz) files, one for each subject. Alternatively, a wildcard can be used
+    to indicate multiple files (e.g., *.nii.gz). The --output path and filename
+    will be treated differently depending on if output summarization (the
+    --summarize argument) is used. If no --summarize argument is provided, the
+    output filename will be treated as a suffix and appended to each input
+    filename (with an underscore). If the --summarize argument is provided, the
+    output will be single file saved to the filename supplied to --ouotput. In
+    either case, a full output path can be provided as well. For example,
+    consider the case where no summarization is used and more than two input
+    files are supplied; if the output argument is --ouput /out_path/isc, input
+    files resembling /in_path/s1.nii.gz, /in_path/s2.nii.gz, /in_path/s3.nii.gz
+    will yield corresponding ouput files named /out_path/s1_isc.nii.gz and so
+    on. The --summarize argument can be used to compute the mean or median ISC
+    value across subjects after completing the ISC analysis (in which case the
+    output file will only have one volume), or to stack the output ISC values
+    for each subject into a single output file. If mean ISC values are
+    requested, ISC values are Fisher z-transformed, the mean is computed, and
+    then the mean is inverse Fisher z-transformed. If N subjects are input into
+    the ISC analysis and --summarize stack is used, the resulting output file
+    will have N volumes (one ISC value for each left-out subject). If only two
+    input files a provided, a single output file is returned. Typically a
+    3-dimensional NIfTI file should be supplied to the --mask argument so as to
+    restrict the analysis to voxels of interest (e.g., the brain, gray matter).
+    The mask file will be converted to a Boolean array and should have 1s for
+    voxels of interest and 0s elsewhere. All input files (and the mask) must be
+    spatially normalized to standard space (e.g., MNI space) prior to ISC
+    analysis. The --zscore argument indicates that response time series should
+    be z-scored (per voxel) prior to ISC analysis; this may be important when
+    computing the average time series for N–1 subjects. The --fisherz argument
+    can be used to apply the Fisher z-transformation (arctanh) to the output
+    ISC values (e.g., for subsequent statistical tests). This program requires
+    an installation of Python 3 with the NumPy/SciPy and NiBabel modules. The
+    implementation is based on the BrainIAK (https://brainiak.org)
+    implementation, but does not require a BrainIAK installation. Note that
+    this software is not written for speed or memory-efficiency, but for
+    readability/transparency.
+
     Example usage:
         python3 isc_cli.py --input s1.nii.gz s2.nii.gz s3.nii.gz \\
         --output isc --mask mask.nii.gz --zscore --fisherz
@@ -358,5 +393,3 @@ def main(args):
 # without actually trying to run everything
 if __name__ == '__main__':
     main(sys.argv[1:])
-
-
