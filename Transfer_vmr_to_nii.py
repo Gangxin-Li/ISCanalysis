@@ -48,7 +48,7 @@ def vmr_to_nii(path = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/
     return path
 
 if __name__ =="__main__":
-    vmr_to_nii('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/1 Aug update')
+    vmr_to_nii('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/30Aug/1546')
 
 
 

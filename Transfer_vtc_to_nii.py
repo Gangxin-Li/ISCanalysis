@@ -9,7 +9,7 @@ import os
 import numpy as np
 import nibabel as nb
 import vtc
-
+from Hook_header import *
 
 # FILE = "/home/faruk/Documents/test_bvbabel/vtc_test.vtc"
 
@@ -38,8 +38,13 @@ def vtc_to_nii(path = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/
                 header, data = vtc.read_vtc(FILE)
                 # Save nifti for testing
                 basename = FILE.split(os.extsep, 1)[0]
-                outname = "{}.nii.gz".format(basename)
-                    
+                outname = "{}.nii".format(basename)
+                
+                # Hook_header test
+                write_header(path = '/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/VMP_Test/Hook_header_test/header',header=header)
+                # 
+                
+                
                 # Export nifti (assign an identity matrix as affine with default header)
                 # np.eye(4)*n, n control the resoultion
                 n=header.get('Data type (1:short int, 2:float)')
@@ -52,7 +57,7 @@ def vtc_to_nii(path = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/
     return path
 
 if __name__ =="__main__":
-    vtc_to_nii('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/25Aug')
+    vtc_to_nii('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/30Aug/1610')
 
 
 

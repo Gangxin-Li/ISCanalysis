@@ -41,7 +41,7 @@ def un_zip(path = './../Data/INDI_Lite_NIFTI'):
 
 
 if __name__ == "__main__":
-    un_zip('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/25Aug')
+    un_zip('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/26Aug')
 
 
 

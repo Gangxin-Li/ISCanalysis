@@ -54,10 +54,11 @@ import nibabel as nib
 
 
 
-img=nib.load('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/25Aug/VTC_TALmask.nii'
-)
-header = img.header
-print(header["XStart"])
+# img=nib.load('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/25Aug/VTC_TALmask.nii')
+# header = img.header
+# print(header["File version"])
+
+# print(str(header).split('/n')[0].split('/n')[0])
 
 
 # img_arr=img.get_fdata()
@@ -70,12 +71,26 @@ print(header["XStart"])
 # mask.plot()
 
 # mask = Brain_Data('http://neurovault.org/media/images/2099/Neurosynth%20Parcellation_0.nii.gz')
-# mask_x = expand_mask(mask)
+img=nib.load('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/30Aug/1610/0100.nii')
 
-# mask.plot()
-
-
-
+# print(img.header)
+# print(img.get_fdata())
+filepath = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/30Aug/1610/0100.txt"
+with open(filepath,'w+') as f:
+    data = img.get_fdata()
+    data = np.array(data)
+    for value in data:
+        for v in value:
+            for vv in v:
+                f.write(str(vv[0]))
+    f.close()
+# data = img.get_fdata()
+# print(data)
+# for value in data:
+#     for v in value:
+#         for vv in v:
+#             print(vv)
+   
 
 # data_dir = '/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/Sherlock'
 
