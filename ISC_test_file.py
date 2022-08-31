@@ -27,7 +27,8 @@ from scipy.signal import hilbert
 import networkx as nx
 from IPython.display import HTML
 import warnings
-
+import reshamping
+from reshamping import permutation_test
 warnings.filterwarnings('ignore')
 # import nest_asyncio
 # nest_asyncio.apply()
@@ -70,20 +71,20 @@ import nibabel as nib
 
 # mask.plot()
 
-# mask = Brain_Data('http://neurovault.org/media/images/2099/Neurosynth%20Parcellation_0.nii.gz')
-img=nib.load('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/30Aug/1610/0100.nii')
+# # mask = Brain_Data('http://neurovault.org/media/images/2099/Neurosynth%20Parcellation_0.nii.gz')
+# img=nib.load('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/30Aug/1610/0100.nii')
 
-# print(img.header)
-# print(img.get_fdata())
-filepath = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/30Aug/1610/0100.txt"
-with open(filepath,'w+') as f:
-    data = img.get_fdata()
-    data = np.array(data)
-    for value in data:
-        for v in value:
-            for vv in v:
-                f.write(str(vv[0]))
-    f.close()
+# # print(img.header)
+# # print(img.get_fdata())
+# filepath = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/30Aug/1610/0100.txt"
+# with open(filepath,'w+') as f:
+#     data = img.get_fdata()
+#     data = np.array(data)
+#     for value in data:
+#         for v in value:
+#             for vv in v:
+#                 f.write(str(vv[0]))
+#     f.close()
 # data = img.get_fdata()
 # print(data)
 # for value in data:
@@ -110,5 +111,38 @@ with open(filepath,'w+') as f:
 # mask_x = expand_mask(mask)
 
 # mask.plot()
+
+
+#ISC between goups
+
+file1 = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/30Aug/1610/007013.nii"
+file2 = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/30Aug/1610/020278.nii"
+
+img1 = nib.load(file1)
+img2 = nib.load(file2)
+
+
+def statistic(x, y, axis):
+    return np.mean(x, axis=axis) - np.mean(y, axis=axis)
+
+from scipy.stats import norm
+rng = np.random.default_rng()
+x = norm.rvs(size=5, random_state=rng)
+y = norm.rvs(size=6, loc = 3, random_state=rng)
+print(statistic(x, y, 0))
+
+
+
+
+
+
+res = permutation_test((x, y), statistic, vectorized=True,
+                       n_resamples=np.inf, alternative='less')
+print(res.statistic)
+
+print(res.pvalue)
+
+
+
 
 

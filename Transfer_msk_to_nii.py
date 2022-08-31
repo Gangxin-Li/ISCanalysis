@@ -21,7 +21,7 @@ def msk_to_nii(path = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/
                 header, data = msk.read_msk(FILE)
                 # Save nifti for testing
                 basename = FILE.split(os.extsep, 1)[0]
-                outname = "{}.nii.gz".format(basename)
+                outname = "{}.nii".format(basename)
                 # Export nifti (assign an identity matrix as affine with default header)
                 n=header.get('Data type (1:short int, 2:float)')
                 print("resolution:"+str(n))
