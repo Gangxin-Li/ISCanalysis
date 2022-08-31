@@ -13,6 +13,7 @@ Change to the folder which the mask exist. And it will output the correct mask.
 3. Using "isc_cli.py" to calculate the Intern subject calculations.
 
 At the command line input the following command 
+
         python3 isc_cli.py --input s1.nii.gz s2.nii.gz s3.nii.gz \\
         --output isc --mask mask.nii.gz --zscore --fisherz
 
