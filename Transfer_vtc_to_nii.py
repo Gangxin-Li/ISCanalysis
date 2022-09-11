@@ -57,7 +57,7 @@ def vtc_to_nii(path = "/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/
     return path
 
 if __name__ =="__main__":
-    vtc_to_nii('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/30Aug/1610')
+    vtc_to_nii('/Users/gangxinli/Desktop/Internship/Neuro/Neuro_ISC/Data/11Sep/vtc_tal')
 
 
 
